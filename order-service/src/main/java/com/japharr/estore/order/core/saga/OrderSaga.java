@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
 @Saga
-public class OrderServiceSaga {
+public class OrderSaga {
     @Autowired
     private transient CommandGateway commandGateway;
 
