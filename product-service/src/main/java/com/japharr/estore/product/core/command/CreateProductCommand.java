@@ -1,4 +1,4 @@
-package com.japharr.estore.productservice.core.command;
+package com.japharr.estore.product.core.command;
 
 import lombok.Builder;
 import lombok.Data;

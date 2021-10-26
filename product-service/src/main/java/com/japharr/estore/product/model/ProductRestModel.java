@@ -1,8 +1,7 @@
-package com.japharr.estore.productservice.model;
+package com.japharr.estore.product.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 
 @Data

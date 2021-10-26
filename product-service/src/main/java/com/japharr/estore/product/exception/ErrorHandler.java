@@ -1,4 +1,4 @@
-package com.japharr.estore.productservice.exception;
+package com.japharr.estore.product.exception;
 
 import org.axonframework.commandhandling.CommandExecutionException;
 import org.springframework.http.HttpHeaders;

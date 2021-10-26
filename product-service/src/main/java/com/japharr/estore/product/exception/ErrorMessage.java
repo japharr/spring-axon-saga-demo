@@ -1,4 +1,4 @@
-package com.japharr.estore.productservice.exception;
+package com.japharr.estore.product.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

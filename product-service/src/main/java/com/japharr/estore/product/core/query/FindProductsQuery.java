@@ -1,4 +1,4 @@
-package com.japharr.estore.productservice.core.query;
+package com.japharr.estore.product.core.query;
 
 import lombok.Data;
 

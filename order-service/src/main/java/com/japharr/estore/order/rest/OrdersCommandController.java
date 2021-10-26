@@ -3,6 +3,7 @@ package com.japharr.estore.order.rest;
 import com.japharr.estore.order.core.command.CreateOrderCommand;
 import com.japharr.estore.order.model.OrderCreateRest;
 import com.japharr.estore.order.model.OrderStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/orders")
 public class OrdersCommandController {
@@ -23,6 +25,7 @@ public class OrdersCommandController {
 
     @PostMapping
     public String createOrder(@Valid @RequestBody OrderCreateRest order) {
+        log.info("OrdersCommandController: createOrder: {}", order);
 
         String userId = "27b95829-4f3f-4ddf-8983-151ba010e35b";
         String orderId = UUID.randomUUID().toString();

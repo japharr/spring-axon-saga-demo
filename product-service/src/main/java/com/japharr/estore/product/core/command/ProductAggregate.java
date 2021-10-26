@@ -1,10 +1,8 @@
-package com.japharr.estore.productservice.core.command;
+package com.japharr.estore.product.core.command;
 
-//import com.japharr.estore.core.command.ReserveProductCommand;
-//import com.japharr.estore.core.event.ProductReservedEvent;
-import com.appsdeveloperblog.estore.core.commands.ReserveProductCommand;
-import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
-import com.japharr.estore.productservice.core.event.ProductCreatedEvent;
+import com.japharr.estore.core.command.ReserveProductCommand;
+import com.japharr.estore.core.event.ProductReservedEvent;
+import com.japharr.estore.product.core.event.ProductCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -16,8 +14,7 @@ import org.springframework.beans.BeanUtils;
 import java.math.BigDecimal;
 
 @Slf4j
-//@Aggregate
-@Aggregate(snapshotTriggerDefinition="productSnapshotTriggerDefinition")
+@Aggregate
 public class ProductAggregate {
     @AggregateIdentifier
     private String productId;

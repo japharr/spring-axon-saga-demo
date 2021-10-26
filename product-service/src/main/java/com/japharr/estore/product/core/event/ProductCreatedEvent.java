@@ -1,4 +1,4 @@
-package com.japharr.estore.productservice.core.event;
+package com.japharr.estore.product.core.event;
 
 import lombok.Data;
 import lombok.ToString;

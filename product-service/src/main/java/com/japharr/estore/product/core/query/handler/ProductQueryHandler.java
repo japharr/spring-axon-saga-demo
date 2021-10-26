@@ -1,9 +1,9 @@
-package com.japharr.estore.productservice.core.query.handler;
+package com.japharr.estore.product.core.query.handler;
 
-import com.japharr.estore.productservice.core.query.FindProductsQuery;
-import com.japharr.estore.productservice.entity.ProductEntity;
-import com.japharr.estore.productservice.repository.ProductRepository;
-import com.japharr.estore.productservice.model.ProductRestModel;
+import com.japharr.estore.product.core.query.FindProductsQuery;
+import com.japharr.estore.product.entity.ProductEntity;
+import com.japharr.estore.product.model.ProductRestModel;
+import com.japharr.estore.product.repository.ProductRepository;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

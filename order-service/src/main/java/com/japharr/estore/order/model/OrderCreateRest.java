@@ -1,12 +1,14 @@
 package com.japharr.estore.order.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Data
+@ToString
 public class OrderCreateRest {
 
     @NotBlank(message = "Order productId is a required field")

@@ -1,9 +1,9 @@
-package com.japharr.estore.productservice.core.event.handler;
+package com.japharr.estore.product.core.event.handler;
 
 
-import com.japharr.estore.productservice.core.event.ProductCreatedEvent;
-import com.japharr.estore.productservice.entity.ProductLookupEntity;
-import com.japharr.estore.productservice.repository.ProductLookRepository;
+import com.japharr.estore.product.core.event.ProductCreatedEvent;
+import com.japharr.estore.product.entity.ProductLookupEntity;
+import com.japharr.estore.product.repository.ProductLookRepository;
 import lombok.AllArgsConstructor;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;

@@ -1,8 +1,8 @@
-package com.japharr.estore.productservice.core.command.interceptor;
+package com.japharr.estore.product.core.command.interceptor;
 
-import com.japharr.estore.productservice.core.command.CreateProductCommand;
-import com.japharr.estore.productservice.entity.ProductLookupEntity;
-import com.japharr.estore.productservice.repository.ProductLookRepository;
+import com.japharr.estore.product.core.command.CreateProductCommand;
+import com.japharr.estore.product.entity.ProductLookupEntity;
+import com.japharr.estore.product.repository.ProductLookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;

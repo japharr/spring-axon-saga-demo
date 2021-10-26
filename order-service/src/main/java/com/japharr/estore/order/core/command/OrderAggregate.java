@@ -2,6 +2,7 @@ package com.japharr.estore.order.core.command;
 
 import com.japharr.estore.order.core.event.OrderCreatedEvent;
 import com.japharr.estore.order.model.OrderStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -9,6 +10,7 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
 
+@Slf4j
 @Aggregate
 public class OrderAggregate {
     @AggregateIdentifier
@@ -24,6 +26,7 @@ public class OrderAggregate {
 
     @CommandHandler
     public OrderAggregate(CreateOrderCommand createOrderCommand) {
+        log.info("OrderAggregate: CreateOrderCommand: {}", createOrderCommand);
         OrderCreatedEvent orderCreatedEvent = new OrderCreatedEvent();
         BeanUtils.copyProperties(createOrderCommand, orderCreatedEvent);
 

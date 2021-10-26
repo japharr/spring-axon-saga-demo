@@ -3,10 +3,12 @@ package com.japharr.estore.order.core.command;
 import com.japharr.estore.order.model.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 @Builder
 @Data
+@ToString
 public class CreateOrderCommand {
 
     @TargetAggregateIdentifier

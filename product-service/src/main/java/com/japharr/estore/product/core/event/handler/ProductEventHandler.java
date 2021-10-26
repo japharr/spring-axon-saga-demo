@@ -1,10 +1,9 @@
-package com.japharr.estore.productservice.core.event.handler;
+package com.japharr.estore.product.core.event.handler;
 
-//import com.japharr.estore.core.event.ProductReservedEvent;
-import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
-import com.japharr.estore.productservice.core.event.ProductCreatedEvent;
-import com.japharr.estore.productservice.entity.ProductEntity;
-import com.japharr.estore.productservice.repository.ProductRepository;
+import com.japharr.estore.core.event.ProductReservedEvent;
+import com.japharr.estore.product.core.event.ProductCreatedEvent;
+import com.japharr.estore.product.entity.ProductEntity;
+import com.japharr.estore.product.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;

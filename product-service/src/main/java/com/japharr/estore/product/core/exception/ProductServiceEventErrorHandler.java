@@ -1,4 +1,4 @@
-package com.japharr.estore.productservice.core.exception;
+package com.japharr.estore.product.core.exception;
 
 import org.axonframework.eventhandling.EventMessage;
 import org.axonframework.eventhandling.EventMessageHandler;
