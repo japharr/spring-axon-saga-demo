@@ -10,12 +10,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>core-module</artifactId>
+    <artifactId>core</artifactId>
     <groupId>com.japharr.estore</groupId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <java.version>11</java.version>
+        <axon.version>4.5.4</axon.version>
     </properties>
 
     <dependencies>
@@ -27,6 +28,7 @@
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
+            <version>${axon.version}</version>
         </dependency>
 
         <dependency>
@@ -42,15 +44,15 @@
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.japharr.estore</groupId>
-                <artifactId>estore-demo</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>com.japharr.estore</groupId>-->
+<!--                <artifactId>estore-demo</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
 </project>

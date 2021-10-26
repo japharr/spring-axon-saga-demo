@@ -62,10 +62,16 @@
 			<version>${guava.version}</version>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>com.japharr.estore</groupId>-->
+<!--			<artifactId>core</artifactId>-->
+<!--			<version>${project.version}</version>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>com.japharr.estore</groupId>
-			<artifactId>core-module</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.appsdeveloperblog.estore</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

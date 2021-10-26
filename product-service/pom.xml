@@ -50,9 +50,15 @@
 			<artifactId>guava</artifactId>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>com.japharr.estore</groupId>-->
+<!--			<artifactId>core</artifactId>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>com.japharr.estore</groupId>
-			<artifactId>core-module</artifactId>
+			<groupId>com.appsdeveloperblog.estore</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

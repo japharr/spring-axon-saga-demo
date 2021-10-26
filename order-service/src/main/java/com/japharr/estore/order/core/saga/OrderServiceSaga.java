@@ -1,7 +1,9 @@
 package com.japharr.estore.order.core.saga;
 
-import com.japharr.estore.core.command.ReserveProductCommand;
-import com.japharr.estore.core.event.ProductReservedEvent;
+import com.appsdeveloperblog.estore.core.commands.ReserveProductCommand;
+import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
+//import com.japharr.estore.core.command.ReserveProductCommand;
+//import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.order.core.event.OrderCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandCallback;
@@ -15,12 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
 @Saga
-public class OrderSaga {
+public class OrderServiceSaga {
     @Autowired
     private transient CommandGateway commandGateway;
 
     @StartSaga
-    @SagaEventHandler(associationProperty="orderId")
+    @SagaEventHandler(associationProperty = "orderId")
     public void handle(OrderCreatedEvent orderCreatedEvent) {
         System.out.println("OrderSaga: OrderCreatedEvent handled for orderId: " + orderCreatedEvent.getOrderId() +
                 " and productId: " + orderCreatedEvent.getProductId() );
@@ -55,7 +57,7 @@ public class OrderSaga {
         });
     }
 
-    @SagaEventHandler(associationProperty="orderId")
+    @SagaEventHandler(associationProperty = "orderId")
     public void handle(ProductReservedEvent productReservedEvent) {
         log.info("OrderSaga: ProductReservedEvent: {}", productReservedEvent.getProductId());
     }
