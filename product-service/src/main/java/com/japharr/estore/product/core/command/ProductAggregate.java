@@ -1,9 +1,9 @@
 package com.japharr.estore.product.core.command;
 
-import com.appsdeveloperblog.estore.core.commands.ReserveProductCommand;
-import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
-//import com.japharr.estore.core.command.ReserveProductCommand;
-//import com.japharr.estore.core.event.ProductReservedEvent;
+//import com.appsdeveloperblog.estore.core.commands.ReserveProductCommand;
+//import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
+import com.japharr.estore.core.command.ReserveProductCommand;
+import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.product.core.event.ProductCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;

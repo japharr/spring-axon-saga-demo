@@ -48,7 +48,7 @@
             </dependency>
             <dependency>
                 <groupId>com.japharr.estore</groupId>
-                <artifactId>core-module</artifactId>
+                <artifactId>core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

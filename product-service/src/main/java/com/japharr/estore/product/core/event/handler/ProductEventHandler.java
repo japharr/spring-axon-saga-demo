@@ -1,7 +1,7 @@
 package com.japharr.estore.product.core.event.handler;
 
-import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
-//import com.japharr.estore.core.event.ProductReservedEvent;
+//import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
+import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.product.core.event.ProductCreatedEvent;
 import com.japharr.estore.product.entity.ProductEntity;
 import com.japharr.estore.product.repository.ProductRepository;
