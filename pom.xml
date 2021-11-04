@@ -8,6 +8,8 @@
         <module>product-service</module>
         <module>order-service</module>
         <module>core-module</module>
+        <module>api-gateway</module>
+        <module>discovery-server</module>
     </modules>
 
     <groupId>com.japharr.estore</groupId>
