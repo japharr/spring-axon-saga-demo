@@ -2,6 +2,7 @@ package com.japharr.estore.order.core.saga;
 
 //import com.appsdeveloperblog.estore.core.commands.ReserveProductCommand;
 //import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
+import com.japharr.estore.core.command.ProcessPaymentCommand;
 import com.japharr.estore.core.command.ReserveProductCommand;
 import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.core.model.User;
@@ -18,6 +19,9 @@ import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.queryhandling.QueryGateway;
 import org.axonframework.spring.stereotype.Saga;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Saga
@@ -77,10 +81,31 @@ public class OrderSaga {
             userPaymentDetail = queryGateway.query(fetchUserPaymentDetailQuery, ResponseTypes.instanceOf(User.class)).join();
         } catch (Exception ex) {
             log.error(ex.getLocalizedMessage());
-            // start compensating transaction
+        }
+
+        if(userPaymentDetail == null) {
+            // TODO:: Start Compensating transaction
             return;
         }
 
         log.info("OrderSaga: ProductReservedEvent: UserDetails: {}", userPaymentDetail);
+
+        ProcessPaymentCommand processPaymentCommand = ProcessPaymentCommand.builder()
+                .orderId(productReservedEvent.getOrderId())
+                .paymentDetail(userPaymentDetail.getPaymentDetail())
+                .paymentId(UUID.randomUUID().toString())
+                .build();
+
+        String result = null;
+        try {
+            result = commandGateway.sendAndWait(processPaymentCommand, 10, TimeUnit.SECONDS);
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+        }
+
+        if(result == null) {
+            log.info("result is null, initiating a compensating transaction");
+            // TODO:: Start Compensating transaction
+        }
     }
 }
