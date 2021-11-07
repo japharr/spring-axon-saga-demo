@@ -4,9 +4,12 @@ package com.japharr.estore.order.core.saga;
 //import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
 import com.japharr.estore.core.command.ProcessPaymentCommand;
 import com.japharr.estore.core.command.ReserveProductCommand;
+import com.japharr.estore.core.event.PaymentProcessedEvent;
 import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.core.model.User;
 import com.japharr.estore.core.query.FetchUserPaymentDetailQuery;
+import com.japharr.estore.order.core.command.ApproveOrderCommand;
+import com.japharr.estore.order.core.event.OrderApprovedEvent;
 import com.japharr.estore.order.core.event.OrderCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandCallback;
@@ -14,7 +17,9 @@ import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.commandhandling.CommandResultMessage;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
+import org.axonframework.modelling.saga.EndSaga;
 import org.axonframework.modelling.saga.SagaEventHandler;
+import org.axonframework.modelling.saga.SagaLifecycle;
 import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.queryhandling.QueryGateway;
 import org.axonframework.spring.stereotype.Saga;
@@ -107,5 +112,19 @@ public class OrderSaga {
             log.info("result is null, initiating a compensating transaction");
             // TODO:: Start Compensating transaction
         }
+    }
+
+    @SagaEventHandler(associationProperty = "orderId")
+    public void handlePaymentProcessedEvent(PaymentProcessedEvent paymentProcessedEvent) {
+        log.info("paymentProcessedEvent");
+        commandGateway.send(new ApproveOrderCommand(paymentProcessedEvent.getOrderId()));
+    }
+
+    @EndSaga
+    @SagaEventHandler(associationProperty = "oderId")
+    public void handle(OrderApprovedEvent orderApprovedEvent) {
+        log.info("orderApprovedEvent, order saga complete for orderId: {}", orderApprovedEvent.getOrderId());
+
+        //SagaLifecycle.end();
     }
 }

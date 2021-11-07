@@ -1,5 +1,6 @@
 package com.japharr.estore.order.core.command;
 
+import com.japharr.estore.order.core.event.OrderApprovedEvent;
 import com.japharr.estore.order.core.event.OrderCreatedEvent;
 import com.japharr.estore.order.model.OrderStatus;
 import lombok.extern.slf4j.Slf4j;
@@ -41,5 +42,18 @@ public class OrderAggregate {
         this.addressId = orderCreatedEvent.getAddressId();
         this.quantity = orderCreatedEvent.getQuantity();
         this.orderStatus = orderCreatedEvent.getOrderStatus();
+    }
+
+    @CommandHandler
+    public void handle(ApproveOrderCommand approveOrderCommand) {
+        log.info("to publish order approved event");
+        OrderApprovedEvent orderApprovedEvent = new OrderApprovedEvent(approveOrderCommand.getOrderId());
+
+        AggregateLifecycle.apply(orderApprovedEvent);
+    }
+
+    @EventSourcingHandler
+    public void on(OrderApprovedEvent orderApprovedEvent) {
+        this.orderStatus = orderApprovedEvent.getOrderStatus();
     }
 }
