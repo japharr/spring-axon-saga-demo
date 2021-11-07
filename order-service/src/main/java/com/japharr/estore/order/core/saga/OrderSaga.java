@@ -121,7 +121,7 @@ public class OrderSaga {
     }
 
     @EndSaga
-    @SagaEventHandler(associationProperty = "oderId")
+    @SagaEventHandler(associationProperty = "orderId")
     public void handle(OrderApprovedEvent orderApprovedEvent) {
         log.info("orderApprovedEvent, order saga complete for orderId: {}", orderApprovedEvent.getOrderId());
 
