@@ -2,6 +2,7 @@ package com.japharr.estore.order.core.event.handler;
 
 import com.japharr.estore.order.core.event.OrderApprovedEvent;
 import com.japharr.estore.order.core.event.OrderCreatedEvent;
+import com.japharr.estore.order.core.event.OrderRejectedEvent;
 import com.japharr.estore.order.entity.OrderEntity;
 import com.japharr.estore.order.repository.OrdersRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,19 @@ public class OrderEventsHandler {
 
     @EventHandler
     public void on(OrderApprovedEvent event) throws Exception {
+        log.info("OrderEventsHandler: OrderApprovedEvent: {}", event);
+        OrderEntity orderEntity = ordersRepository.findByOrderId(event.getOrderId());
+        if(orderEntity == null) {
+            log.info("orderEntity is null");
+            return;
+        }
+
+        orderEntity.setOrderStatus(event.getOrderStatus());
+        ordersRepository.save(orderEntity);
+    }
+
+    @EventHandler
+    public void on(OrderRejectedEvent event) {
         log.info("OrderEventsHandler: OrderApprovedEvent: {}", event);
         OrderEntity orderEntity = ordersRepository.findByOrderId(event.getOrderId());
         if(orderEntity == null) {

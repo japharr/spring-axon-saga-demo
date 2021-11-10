@@ -1,6 +1,7 @@
 package com.japharr.estore.product.core.event.handler;
 
 //import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
+import com.japharr.estore.core.event.ProductReservationCancelEvent;
 import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.product.core.event.ProductCreatedEvent;
 import com.japharr.estore.product.entity.ProductEntity;
@@ -55,5 +56,15 @@ public class ProductEventHandler {
 
         log.info("ProductReservedEvent is called for productId:" + productReservedEvent.getProductId() +
                 " and orderId: " + productReservedEvent.getOrderId());
+    }
+
+    @EventHandler
+    public void on(ProductReservationCancelEvent event) {
+        ProductEntity productEntity = productRepository.findByProductId(event.getProductId());
+
+        log.info("ProductReservationCancelEvent: Current product quantity " + productEntity.getQuantity());
+
+        productEntity.setQuantity(productEntity.getQuantity() + event.getQuantity());
+        productRepository.save(productEntity);
     }
 }

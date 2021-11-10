@@ -2,7 +2,9 @@ package com.japharr.estore.product.core.command;
 
 //import com.appsdeveloperblog.estore.core.commands.ReserveProductCommand;
 //import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
+import com.japharr.estore.core.command.CancelProductReservationCommand;
 import com.japharr.estore.core.command.ReserveProductCommand;
+import com.japharr.estore.core.event.ProductReservationCancelEvent;
 import com.japharr.estore.core.event.ProductReservedEvent;
 import com.japharr.estore.product.core.event.ProductCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +65,18 @@ public class ProductAggregate {
         AggregateLifecycle.apply(reservedEvent);
     }
 
+    public void handle(CancelProductReservationCommand productReservationCommand) {
+        ProductReservationCancelEvent event = ProductReservationCancelEvent.builder()
+                .orderId(productReservationCommand.getOrderId())
+                .productId(productReservationCommand.getProductId())
+                .quantity(productReservationCommand.getQuantity())
+                .userId(productReservationCommand.getUserId())
+                .reason(productReservationCommand.getReason())
+                .build();
+
+        AggregateLifecycle.apply(event);
+    }
+
     @EventSourcingHandler
     public void on(ProductCreatedEvent productCreatedEvent) {
         this.productId = productCreatedEvent.getProductId();
@@ -74,6 +88,11 @@ public class ProductAggregate {
     @EventSourcingHandler
     public void on(ProductReservedEvent productReservedEvent) {
         this.quantity -= productReservedEvent.getQuantity();
+    }
+
+    @EventSourcingHandler
+    public void on(ProductReservationCancelEvent event) {
+        this.quantity += event.getQuantity();
     }
 
 }

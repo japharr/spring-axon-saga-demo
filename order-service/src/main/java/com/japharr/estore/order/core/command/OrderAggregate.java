@@ -2,6 +2,7 @@ package com.japharr.estore.order.core.command;
 
 import com.japharr.estore.order.core.event.OrderApprovedEvent;
 import com.japharr.estore.order.core.event.OrderCreatedEvent;
+import com.japharr.estore.order.core.event.OrderRejectedEvent;
 import com.japharr.estore.order.model.OrderStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
@@ -55,5 +56,19 @@ public class OrderAggregate {
     @EventSourcingHandler
     public void on(OrderApprovedEvent orderApprovedEvent) {
         this.orderStatus = orderApprovedEvent.getOrderStatus();
+    }
+
+    @CommandHandler
+    public void handle(RejectOrderCommand rejectOrderCommand) {
+        OrderRejectedEvent orderRejectedEvent = new OrderRejectedEvent(
+                rejectOrderCommand.getOrderId(), rejectOrderCommand.getReason()
+        );
+
+        AggregateLifecycle.apply(orderRejectedEvent);
+    }
+
+    @EventSourcingHandler
+    public void on(OrderRejectedEvent orderRejectedEvent) {
+        this.orderStatus = orderRejectedEvent.getOrderStatus();
     }
 }
